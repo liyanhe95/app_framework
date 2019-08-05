@@ -1,0 +1,13 @@
+platform: IOS
+name: iphone 6s plus
+platform_version: 11
+color: gold
+installed_app:
+  - taobao
+  - ketangpai
+  - txkt
+  - txsp
+  - kugou
+  - wechat
+  - name: 11
+    sex: female

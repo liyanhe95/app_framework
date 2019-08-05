@@ -2,6 +2,13 @@
 
 一定会修改的部分
 PO  -- pages testcases testdatas  跟业务息息相关
+web页面和app页面的区别:
+web--浏览器
+app--手机端
+web：一个页面内容非常丰富，页面够大
+app：手机大小受限，还要看的清，可以触屏。一个页面内容偏少
+自动化：web一个页面的内容，app当中好几个页面，功能精简
+app自动化的时候，封装页面。不要想web自动化一样，一个页面一个page
 
 框架部分，相对于app，要完善的地方
 basepage   在basepage中都实现了怎么（定义基类、操作方法、异常处理、截图、等待的封装、等待元素可见）
@@ -9,3 +16,91 @@ basepage   在basepage中都实现了怎么（定义基类、操作方法、异�
 直接延用web自动化，在它的基础上增加移动端操作
 
 获取设备大小、滑屏操作（左右滑屏，上下滑屏）、列表滑动、toast获取、h5切换
+
+app用例：
+conftest.py
+#开启会话  ===区别
+#web  浏览器   driver = webdriver.Chrome
+#app
+desired_caps(至少6个)，写到配置文件：py，conf，yaml
+driver = webdriver.Remote("",desired_caps)
+使用yaml管理配置参数
+编写basedriver函数，可以动态的根据用例来修改启动参数
+对于记住用户状态，我们需要考虑用户是否已登陆
+
+Yaml
+yaml是一种简洁的非标记语言
+yaml以数据为中心，使用空白，缩进，分行组织，从而使得表示更加简洁
+基本规则
+1、大小写敏感
+2、使用缩进表示层级关系
+3、禁止使用tab缩进，只能用空格键
+4、缩进长度没有限制，只要元素对齐就表示这些元素属于一个层级
+5、使用#表示注释
+6、字符串可以不用引号标注
+
+三种数据结构：
+1、字典
+使用冒号(：)表示键值，同一缩进所有的键值对属于一个map
+yaml方式一(注意冒号后的空格)
+platformName:Android
+platformNameVersion:5.1
+
+方式二
+{platformName:Android,platformVersion:5.1}
+
+2、列表
+使用连字符(-)表示，注意-后的空格
+- hello
+- world
+
+方式二
+[hello,world,12,13]
+
+3、scalar，纯量（布尔值，字符串，数字）
+
+
+pip install PyYaml
+引入：
+import yaml
+
+读取yaml文件的数据，并转换成python对象
+1、打开yaml文件
+2、使用yaml的load()函数,转换成python数据对象
+
+示例代码：
+fs = open(os.path.join(caps_dir,"caps.yaml"))
+datas = yaml.load(fs)
+
+未来的优化方向
+1、利用adb\aapt，自动去获取启动参数，然后转成字典，开启会话
+2、多机型并发  pytest，利用pytest命令参数化+多线程
+参考文档：
+3、微信小程序：Fautotest
+
+
+
+更灵活的获取它所有的题库类别，截图获取它的所有元素，find_elements
+
+
+
+接口自动化环境地址：
+
+主机：
+test.lemonban.com
+数据库名称：future
+用户名：test
+密码：test
+接口地址访问示例：
+http://test.lemonban.com/futureloan/mvc/api/member/login
+看需求文档，ip地址+端口再拼接口地址
+
+前程贷 web 自动化测试账号资料：
+
+项目地址：http://120.78.128.25:8765/Index/index /
+
+帐号1：18684720553 密码: python
+
+帐号2：13760246701 密码：python
+
+> 注意：不要修改密码，不要大额投资。
